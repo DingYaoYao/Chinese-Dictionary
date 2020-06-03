@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dingyao.huiwan.mapper.CaiMapper">
+  <resultMap id="BaseResultMap" type="com.dingyao.huiwan.entiey.Cai">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="zi" jdbcType="VARCHAR" property="zi" />
+    <result column="cai" jdbcType="VARCHAR" property="cai" />
+  </resultMap>
+
+  <select id="selectbycai" resultType="com.dingyao.huiwan.entiey.Cai">
+    select * from `cai` where zi = '${caizi}'
+  </select>
+</mapper>

@@ -1,0 +1,30 @@
+
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/huiwan?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      username: root
+      password: root
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+      # MySQL 8.x: com.mysql.cj.jdbc.Driver
+      driver-class-name: com.mysql.jdbc.Driver
+  mvc:
+    view: # 页面默认前缀目录
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+tomcat:
+  uri-encoding=UTF-8:http:
+  encoding:
+    enabled=true:
+    charset=UTF-8:
+    force=true:
+
+mybatis:
+  type-aliases-package: com.dingyao.huiwan.entiey
+  mapper-locations: classpath:mapper/*.xml
+server:
+  port: 80
