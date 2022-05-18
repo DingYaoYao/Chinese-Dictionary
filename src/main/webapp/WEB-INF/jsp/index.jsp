@@ -108,7 +108,7 @@
             html+='<td> </td>';
             html+='<td> </td></tr>';
             html+='<tr><td> </td>';
-            html+='<td> 第三框输入您可能知道的谐音首拼 如《拔腿毛》BTM任意一拼（目前已暂停此功能使用）</td>';
+            html+='<td> 第三框输入您可能知道的谐音首拼 如《拔腿毛》BTM任意一拼</td>';
             html+='<td> </td>';
             html+='<td> </td></tr>';
             html+='<tr><td> </td>';
@@ -476,14 +476,15 @@
                     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
                     async: false,
                     success:function(data){
-                        alert("已出结果");
+                      //  alert("已出结果");
                         var html='';
                         $("#contentchiku").html(html);
                         $.each(data,function (index,book) {
                             html+='<tr><td>'+book.id+'</td>';
                             html+='<td>'+book.text+'</td>';
                             html+='<td>'+book.len+'</td>';
-                            html+='<td>'+book.pinyin+'</td></tr>';
+                            html+='<td>'+book.pinyin+'</td>';
+                            html+='<td>'+book.caizi+'</td></tr>';
                         })
                         $("#contentchiku").html(html);
                     },
@@ -534,7 +535,7 @@
                                 <input type="text" class="form-control form-control-user" id="len" name="len" oninput = "value=value.replace(/[^\d]/g,'')" placeholder="可能知道的字数 ">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="pinyin" name="pinyin" onkeyup="this.value=this.value.replace(/[, ]/g,'')" disabled="disabled" placeholder="可能知道的谐音首拼（暂停使用）">
+                                <input type="text" class="form-control form-control-user" id="pinyin" name="pinyin" onkeyup="this.value=this.value.replace(/[, ]/g,'')"  placeholder="可能知道的谐音首拼">
                             </div>
 
                             <div class="form-group">
@@ -559,6 +560,7 @@
                     <th>词</th>
                     <th>字数</th>
                     <th>拼音</th>
+                    <th>拆法</th>
                 </tr>
                 <tbody id="contentchiku">
 

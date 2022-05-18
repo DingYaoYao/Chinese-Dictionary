@@ -1,6 +1,9 @@
 package com.dingyao.huiwan.controll;
 
+import com.alibaba.excel.EasyExcelFactory;
+import com.alibaba.excel.metadata.Sheet;
 import com.dingyao.huiwan.entiey.Cai;
+import com.dingyao.huiwan.entiey.Chi;
 import com.dingyao.huiwan.entiey.Chiku;
 import com.dingyao.huiwan.entiey.Fankui;
 import com.dingyao.huiwan.mapper.CaiMapper;
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +35,55 @@ public class HomeController {
     public List<Chiku> login() throws Exception {
         List<Chiku>Chiku= chikuMapper.selectAll();
         return Chiku;
+    }
+
+    @RequestMapping(value = "/indexxaa",method = RequestMethod.GET)
+    public String  indexxaa() throws Exception {
+        int abc=0;int cdb=0;
+
+        Sheet sheet = new Sheet(1, 1, Chi.class);
+        InputStream is =new FileInputStream("C:\\Users\\Administrator\\Desktop\\wasd.xlsx");
+        List<Object> readList = EasyExcelFactory.read(is, sheet);
+        for (int i = 0; i < readList.size(); i++) {
+            Chi wno = (Chi) readList.get(i);
+            String text = wno.getJobNumber();//获取到
+            //判断是否为空为空跳过
+            if (text==null||text.length()==0) {
+                continue;
+            }
+            List<Chiku>Chiku=new ArrayList<>();
+            String   caisql="  1=1  AND  `TEXT` =  '"+text+"'   ";
+            Chiku= chikuMapper.findUserByNameAndRoleIdlen(caisql);
+            if(Chiku.size()>0){
+                cdb+=1;
+                System.out.println(text);
+            }else{
+                Chiku ciku=new Chiku();
+                ciku.setText(text);
+                ciku.setLen(text.length());
+                String caizhi = "";
+                char ac[]=text.toCharArray();
+                for(char b:ac){
+                    Cai Cai= CaiMapper.selectbycai(String.valueOf(b));
+                    if(Cai!=null){
+                        caizhi+=Cai.getCai()+">";
+                        char d[]=Cai.getCai().toCharArray();
+                        for (char c:d){
+                            Cai Caia= CaiMapper.selectbycai(String.valueOf(c));
+                            if(Caia!=null){
+                                caizhi+=Caia.getCai()+">";
+                            }
+                        }
+                    }
+                }
+                ciku.setCaizi(caizhi.replace(" ", ""));
+                String pinyin=stringutil.getPinYinHeadChar(text);
+                ciku.setPinyin(pinyin.replace(" ", ""));
+                chikuMapper.insert(ciku);
+                abc+=1;
+            }
+        }
+        return "abc"+abc+"cbd重复"+cdb;
     }
 
     @RequestMapping(value = "/fankui",method = RequestMethod.POST)
@@ -76,7 +130,7 @@ public class HomeController {
                 ciku.setCaizi(caizhi.replace(" ", ""));
                 String pinyin=stringutil.getPinYinHeadChar(text);
                 ciku.setPinyin(pinyin.replace(" ", ""));
-              a=  chikuMapper.insert(ciku);
+                a=  chikuMapper.insert(ciku);
             }
 
         }
