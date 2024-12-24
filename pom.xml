@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.Dingyao</groupId>
-    <artifactId>huiwan</artifactId>
+    <artifactId>huiWan</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>huiwan</name>
     <packaging>jar</packaging>
