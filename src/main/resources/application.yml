@@ -2,9 +2,9 @@
 spring:
   datasource:
     druid:
-      url:  jdbc:mysql://121.5.232.108:3366/huiwan?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-      username: root
-      password: root
+      url:  jdbc:mysql://localhost:3306/huiwan?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      username: test_user
+      password: test_password
       initial-size: 1
       min-idle: 1
       max-active: 20
@@ -27,4 +27,4 @@ mybatis:
   type-aliases-package: com.dingyao.huiwan.entiey
   mapper-locations: classpath:mapper/*.xml
 server:
-  port: 8081
+  port: 8888

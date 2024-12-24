@@ -18,8 +18,10 @@
 
     <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
     <script type="text/javascript">
-        console.log(returnCitySN["cip"]+','+returnCitySN["cname"])
-        var IPname=returnCitySN["cip"]+','+returnCitySN["cname"];
+        var IPname;
+        $.get('https://qifu-api.baidubce.com/ip/local/geo/v1/district', function (data) {
+            IPname= JSON.stringify(data)
+        });
     </script>
     <script type="text/javascript">
         $(document).ready(function () {

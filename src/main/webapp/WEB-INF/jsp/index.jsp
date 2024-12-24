@@ -59,10 +59,12 @@
     </script>
     <script type="text/javascript"
             src='${ctx}/static/js/jquery-3.1.1.min.js'></script>
-    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+
     <script type="text/javascript">
-        console.log(returnCitySN["cip"]+','+returnCitySN["cname"])
-        var IPname=returnCitySN["cip"]+','+returnCitySN["cname"];
+        var IPname;
+        $.get('https://qifu-api.baidubce.com/ip/local/geo/v1/district', function (data) {
+            IPname= JSON.stringify(data)
+        });
     </script>
     <style type="text/css">
         table.gridtable {
