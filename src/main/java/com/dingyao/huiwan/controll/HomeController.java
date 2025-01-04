@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -94,6 +95,7 @@ public class HomeController {
             Fankui.setName(name);
             Fankui.setUserip(ip);
             Fankui.setText(text);
+            Fankui.setInputedate((new Date()));
             fankuiMapper.insert(Fankui);
             return 8888;
         }else{
@@ -106,6 +108,7 @@ public class HomeController {
                 Fankui Fankui=new Fankui();
                 Fankui.setName(name);
                 Fankui.setUserip(ip);
+                Fankui.setInputedate((new Date()));
                 Fankui.setText(text);
                 fankuiMapper.insert(Fankui);
 
